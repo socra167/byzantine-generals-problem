@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  shin1:
+    build:
+      context: .
+      dockerfile: ./SHIN1/Dockerfile
+    container_name: SHIN1
+    volumes:
+      - ./SHIN1:/app
+    ports:
+      - 5050:5000
+
+  shin2:
+    build:
+      context: .
+      dockerfile: ./SHIN2/Dockerfile
+    container_name: SHIN2
+    volumes:
+      - ./SHIN2:/app
+    depends_on:
+      - shin1
+    ports:
+      - 5051:5001
+      
+  shin3:
+    build:
+      context: .
+      dockerfile: ./SHIN3/Dockerfile
+    container_name: SHIN3
+    volumes:
+      - ./SHIN3:/app
+    depends_on:
+      - shin1
+    ports:
+      - 5052:5002
+      
+  shin4:
+    build:
+      context: .
+      dockerfile: ./SHIN4/Dockerfile
+    container_name: SHIN4
+    volumes:
+      - ./SHIN4:/app
+    depends_on:
+      - shin1
+    ports:
+      - 5053:5003
